@@ -522,6 +522,15 @@ body::after {
   z-index: 1;
 }
 
+.avatar-image {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  object-fit: cover;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
 /* Skill bars */
 .skills-grid {
   display: grid;
@@ -1219,9 +1228,11 @@ body::after {
       <h2 class="section-title reveal">Qui suis-je ?</h2>
       <div class="about-grid">
         <div class="about-text reveal">
-          <!-- Geometric avatar -->
+          <!-- Profile image -->
           <div class="avatar-frame">
-            <div class="avatar-hex"><span style="font-family:var(--font-display);font-weight:800;font-size:2rem;color:var(--cyan);letter-spacing:-0.02em;">A.D</span></div>
+            <div class="avatar-hex">
+              <img class="avatar-image" src="Create_a_professional_LinkedIn_profile_202605121313%20copy.jpeg" alt="Portrait d'Ahmed Damouad" loading="lazy" />
+            </div>
           </div>
           <p>IT Specialist chez <strong style="color:var(--cyan)">Mylerz International Morocco</strong>, Technicien IA et développeur créatif. Je combine gestion d'infrastructure IT et intelligence artificielle pour transformer des idées en solutions automatisées — scripts Python, outils métiers et systèmes intelligents.</p>
           <p>Basé à <strong style="color:var(--amber)">Rabat, Maroc</strong>, je pense en prompts et je code en possibilités. Mon objectif : repousser les limites de ce que l'IA peut accomplir au quotidien.</p>
