@@ -1816,14 +1816,18 @@ function toggleDetails(btn) {
 }
 
 /* ── Back to Top ── */
-(function() {
+window.addEventListener('DOMContentLoaded', function() {
   var btt = document.getElementById('backToTop');
   if (!btt) return;
-  window.addEventListener('scroll', function() {
+
+  function toggleBackToTop() {
     if (window.scrollY > 400) btt.classList.add('visible');
     else btt.classList.remove('visible');
-  });
-})();
+  }
+
+  window.addEventListener('scroll', toggleBackToTop, { passive: true });
+  toggleBackToTop();
+});
 
 </script>
 
