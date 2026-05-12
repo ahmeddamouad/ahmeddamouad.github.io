@@ -1770,20 +1770,28 @@ if (skillsSection) skillObserver.observe(skillsSection);
 /* ═══════════════════════════════════════════
    ACTIVE NAV ON SCROLL
    ═══════════════════════════════════════════ */
-const sections = document.querySelectorAll('section[id]');
+const sections = Array.from(document.querySelectorAll('section[id]'));
 const navItems = document.querySelectorAll('.nav-links a');
 
-const navObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navItems.forEach(a => a.classList.remove('active'));
-      const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-      if (active) active.classList.add('active');
+function setActiveNav() {
+  const scrollPosition = window.scrollY + 130;
+  let activeSection = sections[0];
+
+  sections.forEach(section => {
+    if (section.offsetTop <= scrollPosition) {
+      activeSection = section;
     }
   });
-}, { threshold: 0.3, rootMargin: '-70px 0px -50% 0px' });
 
-sections.forEach(s => navObserver.observe(s));
+  navItems.forEach(a => {
+    const isActive = activeSection && a.getAttribute('href') === `#${activeSection.id}`;
+    a.classList.toggle('active', isActive);
+  });
+}
+
+window.addEventListener('scroll', setActiveNav, { passive: true });
+window.addEventListener('load', setActiveNav);
+setActiveNav();
 
 /* ═══════════════════════════════════════════
    SUBTLE PARALLAX ON HERO
